@@ -1,10 +1,13 @@
 public class Main {
     public static void main(String[] args) {
-        int somme = Main.addition(17, 13);
-        System.out.println(somme);
+        decompte(10);
+
     }
 
-    public static int addition(final int entier1, final int entier2){
-        return entier1 + entier2;
+    public static void decompte(final int valeur){
+        if (valeur >= 0 ) {
+            System.out.println(valeur);
+            decompte(valeur-1);
+        }
     }
 }
