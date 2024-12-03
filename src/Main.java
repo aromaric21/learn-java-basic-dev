@@ -1,10 +1,10 @@
 public class Main {
     public static void main(String[] args) {
-        String texte="Une fonction en Java à été exécutée";
-        affiche(texte);
+        int somme = Main.addition(17, 13);
+        System.out.println(somme);
     }
 
-    public static void affiche(String texte){
-        System.out.println(texte);
+    public static int addition(final int entier1, final int entier2){
+        return entier1 + entier2;
     }
 }
