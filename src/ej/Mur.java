@@ -15,4 +15,10 @@ public class Mur extends Bloc{
                 super.hauteur + "" +
                 this.porteur);
     }
+    public boolean estTraversable(){
+        if (this.porteur){
+            return false;
+        }
+        return true;
+    }
 }
