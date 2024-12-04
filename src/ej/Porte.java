@@ -9,10 +9,12 @@ public class Porte extends Bloc{
         this.verouille = verouille;
     }
 
-    public boolean estVerrouillee(){
-        if (this.verouille){
-            return true;
-        }
-        return false;
+    public boolean isLocked(){
+        return verouille;
+    }
+
+    @Override
+    public void afficherDescription() {
+        System.out.println("Je suis une porte !");
     }
 }

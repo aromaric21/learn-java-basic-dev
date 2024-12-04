@@ -15,10 +15,13 @@ public class Mur extends Bloc{
                 super.hauteur + "" +
                 this.porteur);
     }
-    public boolean estTraversable(){
-        if (this.porteur){
-            return false;
-        }
-        return true;
+    public boolean isTraversable(){
+        return !porteur;
+    }
+
+
+    @Override
+    public void afficherDescription() {
+        System.out.println("Je suis un mur !");
     }
 }

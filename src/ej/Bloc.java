@@ -1,6 +1,6 @@
 package ej;
 
-public abstract class Bloc {
+public abstract class Bloc implements IBloc {
     protected int largeur;
     protected int longueur;
     protected int hauteur;
