@@ -1,10 +1,11 @@
 package ej.blocs;
 
-import ej.IllegalBlocException;
+import ej.exceptions.IllegalBlocException;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public abstract class Bloc implements IBloc {
+public class Bloc implements IBloc {
     protected int longueur;
     protected int largeur;
     protected int hauteur;
@@ -12,7 +13,7 @@ public abstract class Bloc implements IBloc {
 
     private static Logger logger = LogManager.getLogger(Bloc.class);
 
-    public Bloc(final int longueur, final int largeur, final int hauteur) throws IllegalBlocException {
+    public Bloc(final int longueur, final int largeur, final int hauteur, final Couleur couleur) throws IllegalBlocException {
         if (longueur < MIN_LONGUEUR || largeur < Min_LARGEUR || hauteur < MIN_HAUTEUR ){
             logger.error("Les valeurs minimales pour longueur, largeur, hauteur n'ont pas été respectées.");
             throw new IllegalBlocException();
@@ -20,8 +21,10 @@ public abstract class Bloc implements IBloc {
         this.longueur = longueur;
         this.largeur = largeur;
         this.hauteur = hauteur;
+        this.couleur = couleur;
 
         logger.info(" Un bloc de type " +this.getClass().getSimpleName() + " a été construit. ");
+
     }
 
     public int getLongueur(){
