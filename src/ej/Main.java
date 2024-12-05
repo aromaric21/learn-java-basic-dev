@@ -79,27 +79,18 @@ public class Main {
     private static Set<IBloc> constructionSetBlocs() throws IllegalBlocException {
         Set<IBloc> blocs = new LinkedHashSet<IBloc>();
 
-        ExecutorService executorService = Executors.newFixedThreadPool(10);
+        ExecutorService executorService = Executors.newVirtualThreadPerTaskExecutor();
 
-        Callable<IBloc> taskMur1 = () -> {
-            return new Mur(3, 2, 2, true);
-        };
-        Callable<IBloc> taskMur2 = () -> {
-            return new Mur(2, 1, 2, false);
-        };
-        Callable<IBloc> taskPorte = () -> {
-            return new Porte(1, 2, 2, true);
-        };
-        Callable<IBloc> taskToit = () -> {
-            return new Toit(3, 1, 1);
-        };
-
-        List<Callable<IBloc>> tasks = Arrays.asList(taskMur1, taskMur1, taskMur2, taskMur2, taskPorte, taskToit);
+        List<Callable<IBloc>> tasks = new ArrayList<Callable<IBloc>>();
+        for(int i=0; i<10000; i++) {
+            Callable<IBloc> taskMur = () -> { return new Mur(3, 2, 2, true); };
+            tasks.add(taskMur);
+        }
         try {
-            List<Future<IBloc>> resultas = executorService.invokeAll(tasks);
-            resultas.forEach((resultat) -> {
+            List<Future<IBloc>> results = executorService.invokeAll(tasks);
+            results.forEach((result) -> {
                 try {
-                    blocs.add(resultat.get());
+                    blocs.add(result.get());
                 } catch (InterruptedException | ExecutionException e) {
                     logger.error("Erreur lors de création parallèle des blocs.");
                 }
@@ -107,6 +98,7 @@ public class Main {
         } catch (InterruptedException e) {
             logger.error("Erreur lors de création parallèle des blocs.");
         }
+
         executorService.shutdown();
         return blocs;
     }
