@@ -1,14 +1,24 @@
 package ej;
 
+import ej.blocs.Porte;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Main {
+
+    private static Logger logger = LogManager.getLogger(Main.class);
+
     public static void main(String[] args) {
 
-        //Mur unBlocMur = new Mur(10, 10, 5, true);
-        //IBloc unBlocMur = new Mur(100, 100, 100, true);
-        //Rampart monRampart = new Rampart(unBlocMur);
-        //unBlocMur.afficherDescription();
-        var terre = new Planete("Terre", 40075.017, 510067420);
+        logger.error("Test de logging");
 
-        System.out.println();
+        try {
+            Porte porte = new Porte(1, 1, 1, true);
+            porte.verrouiller();
+        } catch (IllegalBlocException e) {
+            System.out.println("Impossible de construire le bloc.");
+        } catch (PorteVerrouilleException exception) {
+            System.out.println("La porte est déjà vérrouillée.");
+        }
     }
 }

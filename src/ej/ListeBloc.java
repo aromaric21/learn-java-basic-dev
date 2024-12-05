@@ -1,5 +1,7 @@
 package ej;
 
+import ej.blocs.Bloc;
+
 public class ListeBloc {
     private Bloc[] liste;
 
