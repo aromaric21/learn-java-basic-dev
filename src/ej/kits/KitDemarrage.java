@@ -28,9 +28,11 @@ public class KitDemarrage {
     public void afficherKit(){
         System.out.println("Nombre de blocs dans le kit:" + blocs.size());
         System.out.println("Liste des mots clés du kit :");
-        for (String motCle : motsCles){
+        motsCles.forEach(System.out::println);
+
+        /*        for (String motCle : motsCles){
             System.out.println(motCle + " ");
-        }
+        }*/
     }
 
     public Set<IBloc> getBlocs() {
@@ -44,9 +46,13 @@ public class KitDemarrage {
     public  void sauvegarder(){
         StringBuilder builder = new StringBuilder();
         builder.append("Kit de démarrage\n");
-        for (String motCle : motsCles){
-            builder.append(motCle + " ");
+        motsCles.forEach((motsCles) -> builder.append(motsCles + " "));
+        // Or
+        /**
+         * for (String motCle : motsCles){
+         * builder.append(motCle + " ");
         }
+         **/
         try {
             // Acceder au fichier
             BufferedWriter writer = new BufferedWriter(new FileWriter("kit.txt"));
