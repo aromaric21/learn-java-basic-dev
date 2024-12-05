@@ -20,6 +20,8 @@ public class Main {
 
     public static void main(String[] args) {
 
+        long start = System.currentTimeMillis();
+
         logger.info("Lancement du programme Epicrafter's Journey.");
 
         try {
@@ -71,6 +73,9 @@ public class Main {
         }
 
         logger.info("Arret du programme Epicrafter's Journey.");
+        long end = System.currentTimeMillis();
+        long executionTime = end - start;
+        logger.debug(executionTime + "miliseconds");
     }
 
     private static Set<IBloc> constructionSetBlocs() throws IllegalBlocException {
