@@ -14,13 +14,14 @@ public abstract class Bloc implements IBloc {
 
     public Bloc(final int longueur, final int largeur, final int hauteur) throws IllegalBlocException {
         if (longueur < MIN_LONGUEUR || largeur < Min_LARGEUR || hauteur < MIN_HAUTEUR ){
+            logger.error("Les valeurs minimales pour longueur, largeur, hauteur n'ont pas été respectées.");
             throw new IllegalBlocException();
         }
         this.longueur = longueur;
         this.largeur = largeur;
         this.hauteur = hauteur;
 
-        logger.info("le bloc a été construit.");
+        logger.info(" Un bloc de type " +this.getClass().getSimpleName() + " a été construit. ");
     }
 
     public int getLongueur(){
